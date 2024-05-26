@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Domov",
+    "slug": "domov",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "icon": "./assets/svgs/logoo.svg",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.banxban.Domov"
+    },
+    "web": {},
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c480150b-1b80-40ff-9e7b-9f9b922bc2e3"
+      }
+    },
+    "owner": "placeboplacebo"
+  }
+}

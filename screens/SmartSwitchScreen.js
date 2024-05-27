@@ -1,5 +1,5 @@
 import { View, Text, Modal  } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper'
 import Flat from '../components/Flat2'
@@ -8,7 +8,7 @@ import Logo from '../assets/svgs/logo';
 import { colors } from '../theme/constants';
 import ConnectModal from '../components/Modal'
 
-//Smart switch screen 
+
 export default function SmartSwitchScreen() {
   
 
@@ -19,6 +19,11 @@ export default function SmartSwitchScreen() {
       <Logo/>
       </View>
       <Flat/>
+      
+     
+     
+    
+
     </View>
     </ScreenWrapper>
   )

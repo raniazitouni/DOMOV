@@ -3,8 +3,6 @@ import { Switch, View, Text } from 'react-native';
 import tw from 'twrnc';
 import { colors } from '../theme/constants';
 
-//this is the component that turns on and off the scenes of the smart switch 
-
 const ToggleForDevice = ({ switchValue, handleControlLed, device, connected }) => {
   const toggleSwitch = async (value) => {
     const action = value ? 'on' : 'off';

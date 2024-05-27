@@ -7,8 +7,6 @@ import { colors } from '../theme/constants';
 import Togglecontainer from './Togglecontainer';
 import { useState } from 'react';
 
-
-
 const ToggleCard = ({ name, devices ,  switchState , switchFunction}) => {
   
   return (

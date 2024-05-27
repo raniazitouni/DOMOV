@@ -5,7 +5,7 @@ import { colors } from '../theme/constants';
 import { loadFonts } from '../theme/constants';
 
 
-//this component represents the content of the DeviceCard
+
 export default function Device({ switchValue , name ,children}) {
     
   const fontsLoaded = loadFonts();

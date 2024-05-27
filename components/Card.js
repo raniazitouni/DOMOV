@@ -7,7 +7,6 @@ import * as Location from 'expo-location';
 import tw from 'twrnc';
 import { colors } from '../theme/constants';
 
-// this component represents the card that has the necessary information : location and weather
 const Card = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);

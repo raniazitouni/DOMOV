@@ -5,9 +5,6 @@ import tw from 'twrnc';
 
 import { Button } from 'react-native';
 import { colors } from '../theme/constants';
-
-
-//this component represents a modal that shows up when the smart switch is connected 
 export default function ConnectModal({ isVisible , isConnected }) {
   const [modalVisible, setModalVisible] = useState(isVisible);
 

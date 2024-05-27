@@ -10,7 +10,7 @@ import Modal2 from './Modal2';
 import NetInfo from '@react-native-community/netinfo';
 import { useNavigation } from '@react-navigation/native';
 
-//this component gives the list of the smart switches that exist in the area
+
 export default function Flat() {
   const [data, setData] = useState([
     { name: 'Domov', key: 1, connected: false },
@@ -19,8 +19,8 @@ export default function Flat() {
     // { name: 'Device 4', key: 4, connected: false },
   ]);
   
-  const [connectedDevices, setConnectedDevices] = useState([]);
-  const [availableDevices, setAvailableDevices] = useState([]);
+  // const [connectedDevices, setConnectedDevices] = useState([]);
+  // const [availableDevices, setAvailableDevices] = useState([]);
 
   //modals 
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,8 +29,8 @@ export default function Flat() {
   const [modalVisible2, setModalVisible2] = useState(false);
   
   //spliting the connected and none connected devices
-  // const connectedDevices = data.filter(device => device.connected === true);
-  // const availableDevices = data.filter(device => device.connected === false);
+  const connectedDevices = data.filter(device => device.connected === true);
+  const availableDevices = data.filter(device => device.connected === false);
 
 
   const [switchValue , setSwitchValue] = useState(false);
@@ -38,21 +38,12 @@ export default function Flat() {
 
 
   // Fetch current SSID
-  const [isWifiConnected, setIsWifiConnected] = useState(false);
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
-      setIsWifiConnected(state.type === 'wifi' && state.isConnected);
-    });
-
-    // Clean up the subscription on unmount
-    return () => unsubscribe();
-  }, []);
-
-  const getCurrentSSID = async () => {
-    try {
-      const state = await NetInfo.fetch();
-      const currentSsid = state.details.ssid;
-      if (isWifiConnected) {
+ 
+  const getCurrentSSID = (isConnected, currentSsid) => {
+    // try{
+      // const state = await NetInfo.fetch();
+      // const currentSsid = state.details?.ssid;
+      if (isConnected) {
         if (currentSsid === 'Domov') {
           setSwitchValue(true);
           const updatedData = data.map(item => {
@@ -82,33 +73,71 @@ export default function Flat() {
         setData(updatedData);
 
       }
-    } catch (error) {
-      console.error("Error fetching SSID: ", error);
-      setSwitchValue(false);
-        const updatedData = data.map(item => {
-          return { ...item, connected: false};
-         });
-        setData(updatedData);
-    }
-    const connectedDevices = data.filter(device => device.connected === true);
-    const availableDevices = data.filter(device => device.connected === false);
-    setConnectedDevices(connectedDevices);
-    setAvailableDevices(availableDevices);
+    // } catch (error) {
+    //   console.error("Error fetching SSID: ", error);
+    //   setSwitchValue(false);
+    //     const updatedData = data.map(item => {
+    //       return { ...item, connected: false};
+    //      });
+    //     setData(updatedData);
+    // }
+    // const connectedDevices = data.filter(device => device.connected === true);
+    // const availableDevices = data.filter(device => device.connected === false);
+    // setConnectedDevices(connectedDevices);
+    // setAvailableDevices(availableDevices);
     
   };
 
-  
-
 
   useEffect(() => {
-   
-        getCurrentSSID(); // Initial fetch
-        const intervalId = setInterval(getCurrentSSID, 1000); // Fetch every 5 seconds
-       
-        return () => clearInterval(intervalId); // Cleanup interval on unmount
+    const unsubscribe = NetInfo.addEventListener(state => {
+      if (state?.isConnected) {
+        if (state?.details?.ssid === 'Domov') {
+          setSwitchValue(true);
+          setData(prevData =>
+            prevData.map(item =>
+              item.name === 'Domov' ? { ...item, connected: true } : item
+            )
+          );
+        } else {
+          setSwitchValue(false);
+          setData(prevData =>
+            prevData.map(item =>
+              item.name === 'Domov' ? { ...item, connected: false } : item
+            )
+          );
+        }
+      } else {
+        console.log("SSID is undefined, make sure permissions are granted and WiFi is connected");
+        setSwitchValue(false);
+        setData(prevData =>
+          prevData.map(item => ({
+            ...item,
+            connected: false
+          }))
+        );
       }
+    });
 
-  , []);
+    // Clean up the subscription when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+
+
+
+  // useEffect(() => {
+  
+   
+  //       getCurrentSSID(); // Initial fetch
+  //       const intervalId = setInterval(getCurrentSSID, 1000); // Fetch every 5 seconds
+       
+  //       return () => clearInterval(intervalId); // Cleanup interval on unmount
+  //     }
+
+  // , []);
   //------------------------------------------------------------------------------------------
 
   const toggleDevice = (deviceId) => {

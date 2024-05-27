@@ -5,7 +5,7 @@ import { loadFonts} from '../theme/constants';
 import { colors } from '../theme/constants';
 
 
-//this component represents the container of the card that turns on and off the scenes of a smart switch
+
 const Togglecontainer = ({ switchValue, toggleSwitch, children ,name, devices }) => {
    
   
@@ -15,6 +15,7 @@ const Togglecontainer = ({ switchValue, toggleSwitch, children ,name, devices })
   if (!fontsLoaded) {
    return undefined;
   }
+    
     
   
     const renderDeviceText = () => {

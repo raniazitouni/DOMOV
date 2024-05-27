@@ -3,9 +3,6 @@ import { Switch, View, Text } from 'react-native';
 import tw from 'twrnc';
 import { colors } from '../theme/constants';
 
-
-//this component represnets the toggle itself 
-
 const ToggleSwitch = ({ switchValue, toggleSwitch , connected}) => {
   // const [switchValue, setSwitchValue] = useState(false);
 

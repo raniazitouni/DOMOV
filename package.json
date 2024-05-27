@@ -30,7 +30,6 @@
     "react-native-svg": "^15.2.0",
     "react-native-switch-toggle": "^2.2.1",
     "tailwind-rn": "^4.2.0",
-    "tamagui": "^1.91.3",
     "twrnc": "^3.6.8",
     "typescript": "~5.3.3"
   },
@@ -43,6 +42,7 @@
   "scripts": {
     "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
     "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\"",
+    "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios"
   },

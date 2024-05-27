@@ -14,8 +14,8 @@ import AddDevice from '../assets/svgs/addDevice';
 import {View,Text} from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
 
+import LaunchScreen from '../screens/LaunchScreen';
 
-//this component permits the navigation between the screens 
 const Tab = createBottomTabNavigator();
 const screenOptions = {
   headerShown: false,
@@ -77,7 +77,7 @@ export default function AppNavigation() {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Smart switch"
         component={SmartSwitchScreen}
         options={{
@@ -92,7 +92,7 @@ export default function AppNavigation() {
           ),
           tabBarLabelStyle: { color: colors.navigation },
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name="Help"

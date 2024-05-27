@@ -23,23 +23,23 @@ export default function HomeScreen() {
 
   //check the wifi 
 
-  const [isConnected, setIsConnected] = useState(true);
+  const [isConnected, setIsConnected] = useState(false);
 
   // Fetch current SSID
   const getCurrentSSID = async () => {
     try {
       const state = await NetInfo.fetch();
       const currentSsid = state.details.ssid;
-      // if (currentSsid) {
-      //   if (currentSsid === 'Domov') {
-      //     setIsConnected(true);
-      //   } else {
-      //     setIsConnected(false);
-      //   }
-      // } else {
-      //   console.log("SSID is undefined, make sure permissions are granted and WiFi is connected");
-      //   setIsConnected(false);
-      // }
+      if (currentSsid) {
+        if (currentSsid === 'Domov') {
+          setIsConnected(true);
+        } else {
+          setIsConnected(false);
+        }
+      } else {
+        console.log("SSID is undefined, make sure permissions are granted and WiFi is connected");
+        setIsConnected(false);
+      }
     } catch (error) {
       console.error("Error fetching SSID: ", error);
       setIsConnected(false);
@@ -47,12 +47,10 @@ export default function HomeScreen() {
   };
 
   useEffect(() => {
-   
-        // getCurrentSSID(); // Initial fetch
-        // const intervalId = setInterval(getCurrentSSID, 5000); // Fetch every 5 seconds
-        // return () => clearInterval(intervalId); // Cleanup interval on unmount
+        getCurrentSSID(); // Initial fetch
+        const intervalId = setInterval(getCurrentSSID, 5000); // Fetch every 5 seconds
+        return () => clearInterval(intervalId); // Cleanup interval on unmount
       }
-
   , []);
 
   
@@ -67,7 +65,7 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchLedStates = async () => {
       try {
-        const response = await axios.get(`http://91db-105-235-131-195.ngrok-free.app/state`);
+        const response = await axios.get(`http://192.168.4.1/state`);
         const { Light, GarageDoor } = response.data;
         setLightState(Light);
         setGarageDoorState(GarageDoor);
@@ -95,7 +93,7 @@ export default function HomeScreen() {
 
   const handleControlLed = async (device, action) => {
     try {
-      await axios.post(`http://91db-105-235-131-195.ngrok-free.app/control/${device}/${action}`).then(()=>{
+      await axios.post(`http://192.168.4.1/control/${device}/${action}`).then(()=>{
         if (device === 'Light') {
           setLightState(action === 'on');
         } else if (device === 'GarageDoor') {

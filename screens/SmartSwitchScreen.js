@@ -19,11 +19,6 @@ export default function SmartSwitchScreen() {
       <Logo/>
       </View>
       <Flat/>
-      
-     
-     
-    
-
     </View>
     </ScreenWrapper>
   )

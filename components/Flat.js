@@ -38,7 +38,7 @@ export default function Flat() {
   useEffect(() => {
     const fetchLedStates = async () => {
       try {
-        const response = await axios.get(`http://91db-105-235-131-195.ngrok-free.app/state`);
+        const response = await axios.get(`http://192.168.4.1/state`);
         const { Light, GarageDoor } = response.data;
       
         // Update Light and GarageDoor states
@@ -62,7 +62,7 @@ export default function Flat() {
 
   const handleControlLed = async (device, action) => {
     try {
-      await axios.post(`http://91db-105-235-131-195.ngrok-free.app/control/${device}/${action}`);
+      await axios.post(`http://192.168.4.1/control/${device}/${action}`);
       // Update local state after successful control command
       if (device === 'Light') {
         setLightState(action === 'on');

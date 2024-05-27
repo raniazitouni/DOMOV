@@ -9,7 +9,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "icon": "./assets/svgs/logoo.svg",
+    "icon": "./assets/svgs/logoo.png",
     "assetBundlePatterns": [
       "**/*"
     ],

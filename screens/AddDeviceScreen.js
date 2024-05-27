@@ -16,7 +16,7 @@ const ChangeCredentialsScreen = () => {
     try {
       setIsLoading(true);
 
-      const response = await fetch('http://91db-105-235-131-195.ngrok-free.app/update_credentials', {
+      const response = await fetch('http://192.168.4.1/update_credentials', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

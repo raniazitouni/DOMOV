@@ -6,7 +6,7 @@ import { colors } from "../theme/constants";
 import Logo from "../assets/svgs/logo";
 import Api from "../utils/Api";
 
-const ChangeCredentialsScreen = () => {
+const ChangePasswordScreen = () => {
 	const [newPassword, setNewPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const ChangeCredentialsScreen = () => {
 			},
 		}).then(async (response) => {
 			setIsLoading(false);
-			if (response.ok) {
+			if ( response.status === 200 ) {
 				Alert.alert("Credentials Updated","Credentials updated successfully");
 			} else {
 				const responseBody = await response.text();
@@ -80,15 +80,6 @@ const ChangeCredentialsScreen = () => {
 						Change network’s credentials:{" "}
 					</Text>
 					<View style={[tw`m-3`]}>
-						{/* 
-							<TextInput
-								style={styles.input}
-								placeholder="New network name"
-								onChangeText={(text) => setNewSsid(text)}
-								value={newSsid}
-							/>
-						*/}
-
 						<TextInput
 							style={styles.input}
 							placeholder="New Password"
@@ -173,4 +164,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ChangeCredentialsScreen;
+export default ChangePasswordScreen;

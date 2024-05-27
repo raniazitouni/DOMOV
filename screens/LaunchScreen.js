@@ -7,7 +7,7 @@ import Home from '../assets/svgs/Home'
 
 export default function LaunchScreen() {
   const navigation = useNavigation();
-  const navigateToAddDeviceScreen = () => {
+  const navigateToHomeScreen = () => {
     navigation.navigate('HomeScreen');
   };
   return (
@@ -16,7 +16,7 @@ export default function LaunchScreen() {
       <Text style={[tw` m-10`,{ fontFamily: 'Inter-SemiBold', fontSize: 40 }]}>Domov</Text>
       <TouchableOpacity
             style={[tw`ml-50 bg-gray w-40 h-20 rounded-full shadow-lg p-10 `,{backgroundColor:'#DCE2ED'}]}
-            onPress={navigateToAddDeviceScreen}
+            onPress={navigateToHomeScreen}
           >
           <Arrow/>  
       </TouchableOpacity>
